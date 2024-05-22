@@ -3,8 +3,18 @@ ML model deployment example
 
 Complete code (including a trained model) to deploy and inference a machine learning model (built on the iris dataset) using Docker and FastAPI.
 
-1. With terminal navigate to the root of this repository
---------------------------------------------------------
+1. With terminal navigate to the root of this repository | Ensure you have below file structure
+-----------------------------------------------------------------------------------------------
+.. code-block::
+
+    .
+    |-- Dockerfile
+    |-- README.rst
+    |-- app
+    |   |-- model.joblib
+    |   `-- server.py
+    |-- client.py
+    `-- requirements.txt
 
 2. Build docker image
 ---------------------
@@ -38,3 +48,15 @@ use http://0.0.0.0:8000/docs for testing the model in the web interface.
         .. code-block::
 
             curl -X POST "http://0.0.0.0:8000/predict" -H "accept: application/json" -H "Content-Type: application/json" -d '{"features": [5.1, 3.5, 1.4, 0.2]}'
+
+6. Tag the local docker image
+-----------------------------
+.. code-block::
+
+    docker tag <image-name>:latest | version <docker-hub-username>:<docker-hub-repository-name>:latest | version
+
+6. Push the local docker image to docker hub
+--------------------------------------------
+.. code-block::
+
+    docker push <docker-hub-username>:<docker-hub-repository-name>:latest | version
